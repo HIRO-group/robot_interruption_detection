@@ -49,7 +49,7 @@ CHUNK = int(RATE / 10)  # 100ms
 staring_status = [0, 0]
 staring_start = -1
 streaming_start = -1
-pub = rospy.Publisher('/hiro/language/delta', Int64, queue_size=1)
+pub = rospy.Publisher('/hiro/language/easement', Int64, queue_size=1)
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
