@@ -13,7 +13,7 @@ int prev_language_state = 1;
 int prev_screen_state = 1;
 int prev_gripper_state = 1;
 const double easement_k = 0.5;
-const double t_max = 7.0;
+const double t_max = 8.0;
 const double t_trigger = 0.5;
 
 ros::Time staring_time;
@@ -60,6 +60,7 @@ void updateGazeEvent()
         {
             staring_period = ros::Duration(t_max);
         }
+        staring_time = ros::Time::now();
     }
     else if (!isStaring() && isPrevStaring())
     {
@@ -76,6 +77,7 @@ void updateGazeEvent()
         {
             staring_period = ros::Duration(0);
         }
+        staring_time = ros::Time::now();
     }
 }
 
@@ -109,8 +111,8 @@ int main(int argc, char** argv)
     {
         updateGazeEvent();
         std_msgs::Float64 msg;
-        double gaze_exp = std::exp(-easement_k*(staring_period.toSec() - t_trigger));
-        gaze_exp = std::max(gaze_exp, 0.0);
+        double easement_time = std::max((staring_period.toSec() - t_trigger), 0.0);
+        double gaze_exp = std::exp(-easement_k*easement_time);
         msg.data = std::min(gaze_exp, static_cast<double>(language_state));
         pub_easement.publish(msg);
         ros::spinOnce();
