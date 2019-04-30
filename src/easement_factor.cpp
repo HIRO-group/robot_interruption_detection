@@ -14,7 +14,7 @@ int prev_screen_state = 1;
 int prev_gripper_state = 1;
 const double easement_k = 0.5;
 const double t_max = 8.0;
-const double t_trigger = 0.5;
+const double t_trigger = 0.2;
 
 ros::Time staring_time;
 ros::Duration staring_period;

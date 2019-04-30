@@ -191,7 +191,7 @@ def screen_callback(data):
     if (is_staring() and staring_start == -1):
         staring_start = rospy.get_time()
     elif (is_staring() and staring_start > 0):
-        if (rospy.get_time() - staring_start >= 0.5 and streaming_start == -1):
+        if (rospy.get_time() - staring_start >= 0.2 and streaming_start == -1):
             streaming_start = rospy.get_time()
             start_streaming()
     elif (not is_staring()):
@@ -205,7 +205,7 @@ def gripper_callback(data):
     if (is_staring() and staring_start == -1):
         staring_start = rospy.get_time()
     elif (is_staring() and staring_start > 0):
-        if (rospy.get_time() - staring_start >= 0.5 and streaming_start == -1):
+        if (rospy.get_time() - staring_start >= 0.2 and streaming_start == -1):
             streaming_start = rospy.get_time()
             start_streaming()
     elif (not is_staring()):
