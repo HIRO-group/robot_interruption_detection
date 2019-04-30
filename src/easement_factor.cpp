@@ -12,7 +12,7 @@ int gripper_state = 1;
 int prev_language_state = 1;
 int prev_screen_state = 1;
 int prev_gripper_state = 1;
-const double easement_k = 0.60;
+const double easement_k = 0.69;
 const double t_max = 8.0;
 const double t_trigger = 0.2;
 
@@ -112,7 +112,7 @@ int main(int argc, char** argv)
         updateGazeEvent();
         std_msgs::Float64 msg;
         double easement_time = std::max((staring_period.toSec() - t_trigger), 0.0);
-        double gaze_exp = std::exp(-easement_k*easement_time) * 0.5 + 0.5;
+        double gaze_exp = std::exp(-easement_k*easement_time) * 0.65 + 0.35;
         msg.data = std::min(gaze_exp, static_cast<double>(language_state));
         pub_easement.publish(msg);
         ros::spinOnce();
