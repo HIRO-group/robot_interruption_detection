@@ -166,9 +166,9 @@ def listen_print_loop(responses):
             # one of our keywords.
             global pub
             if re.search(r'\b(exit|quit|stop)\b', transcript, re.I):
-                pub.publish(0)
+                pub.publish(0.1)
             elif re.search(r'\b(go|ahead|continue)\b', transcript, re.I):
-                pub.publish(1)
+                pub.publish(1.0)
 
             num_chars_printed = 0
 
